@@ -418,6 +418,7 @@ function PostDetail({ posts, updatePost, deletePost, upvotePost, addComment }) {
   const { id } = useParams();
   const navigate = useNavigate();
   const [comment, setComment] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
   
   const post = posts.find(p => p.id === id);
   
@@ -436,12 +437,38 @@ function PostDetail({ posts, updatePost, deletePost, upvotePost, addComment }) {
     }
   };
   
-  const handleCommentSubmit = (e) => {
+  const handleCommentSubmit = async (e) => {
     e.preventDefault();
     if (!comment.trim()) return;
     
+    setIsSubmitting(true);
+    
+    // Simulate a small delay for better UX
+    await new Promise(resolve => setTimeout(resolve, 500));
+    
     addComment(post.id, comment);
     setComment('');
+    setIsSubmitting(false);
+  };
+  
+  // Sort comments by date (newest first)
+  const sortedComments = [...post.comments].sort((a, b) => b.createdAt - a.createdAt);
+  
+  // Format relative time for comments
+  const getRelativeTime = (timestamp) => {
+    const now = Date.now();
+    const diff = now - timestamp;
+    
+    const minutes = Math.floor(diff / 60000);
+    const hours = Math.floor(diff / 3600000);
+    const days = Math.floor(diff / 86400000);
+    
+    if (minutes < 1) return 'just now';
+    if (minutes < 60) return `${minutes}m ago`;
+    if (hours < 24) return `${hours}h ago`;
+    if (days < 7) return `${days}d ago`;
+    
+    return new Date(timestamp).toLocaleDateString();
   };
   
   return (
@@ -472,26 +499,50 @@ function PostDetail({ posts, updatePost, deletePost, upvotePost, addComment }) {
       
       <div className="post-comments">
         <h3>Comments ({post.comments.length})</h3>
+        
         <form onSubmit={handleCommentSubmit} className="comment-form">
+          <h4>Add a comment</h4>
           <textarea
             value={comment}
             onChange={(e) => setComment(e.target.value)}
-            placeholder="Add a comment..."
-            rows="3"
+            placeholder="Share your thoughts, ask questions, or provide feedback..."
+            rows="4"
+            disabled={isSubmitting}
           />
-          <button type="submit" className="btn-submit">Post Comment</button>
+          <button 
+            type="submit" 
+            className="btn-submit"
+            disabled={!comment.trim() || isSubmitting}
+          >
+            {isSubmitting ? 'Posting...' : 'Post Comment'}
+          </button>
         </form>
         
         <div className="comments-list">
-          {post.comments.length > 0 ? (
-            post.comments.map(comment => (
+          {sortedComments.length > 0 ? (
+            sortedComments.map(comment => (
               <div key={comment.id} className="comment">
-                <p>{comment.text}</p>
-                <span className="comment-date">{new Date(comment.createdAt).toLocaleString()}</span>
+                <div className="comment-header">
+                  <span className="comment-author">Anonymous User</span>
+                  <span className="comment-date" title={new Date(comment.createdAt).toLocaleString()}>
+                    {getRelativeTime(comment.createdAt)}
+                  </span>
+                </div>
+                <div className="comment-body">
+                  {comment.text}
+                </div>
+                <div className="comment-actions">
+                  <button className="comment-action like">Like</button>
+                  <button className="comment-action reply">Reply</button>
+                  <button className="comment-action report">Report</button>
+                </div>
               </div>
             ))
           ) : (
-            <p>No comments yet. Be the first to comment!</p>
+            <div className="empty-comments">
+              <p>No comments yet</p>
+              <p>Be the first to share your thoughts!</p>
+            </div>
           )}
         </div>
       </div>
