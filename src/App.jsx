@@ -308,6 +308,8 @@ function Home({ posts, sortMethod, setSortMethod, searchQuery, setSearchQuery, r
   );
 }
 
+// Replace the PostCard component with this updated version:
+
 function PostCard({ post }) {
   const navigate = useNavigate();
   
@@ -334,11 +336,17 @@ function PostCard({ post }) {
         {post.content && (
           <p className="post-excerpt">{truncateContent(post.content)}</p>
         )}
-        <div className="post-meta">
+        <div className="post-footer">
           <span className="post-date">{new Date(post.createdAt).toLocaleDateString()}</span>
-          <div className="post-stats">
-            <span className="post-upvotes">❤️ {post.upvotes}</span>
-            <span className="post-comments">💬 {post.comments.length}</span>
+          <div className="post-engagement">
+            <div className="engagement-stat upvotes-stat">
+              <span className="stat-emoji">❤️</span>
+              <span className="stat-number">{post.upvotes}</span>
+            </div>
+            <div className="engagement-stat comments-stat">
+              <span className="stat-emoji">💬</span>
+              <span className="stat-number">{post.comments.length}</span>
+            </div>
           </div>
         </div>
       </div>
@@ -496,22 +504,25 @@ function PostDetail({ posts, updatePost, deletePost, upvotePost, addComment }) {
           ))}
         </div>
       )}
-      
+
       <div className="post-comments">
-        <h3>Comments ({post.comments.length})</h3>
+        <div className="comments-header">
+          <h3>Comments</h3>
+          <span className="comment-count">{post.comments.length}</span>
+        </div>
         
         <form onSubmit={handleCommentSubmit} className="comment-form">
-          <h4>Add a comment</h4>
           <textarea
             value={comment}
             onChange={(e) => setComment(e.target.value)}
-            placeholder="Share your thoughts, ask questions, or provide feedback..."
+            placeholder="Share your thoughts..."
             rows="4"
             disabled={isSubmitting}
+            className="comment-textarea"
           />
           <button 
             type="submit" 
-            className="btn-submit"
+            className="btn-post-comment"
             disabled={!comment.trim() || isSubmitting}
           >
             {isSubmitting ? 'Posting...' : 'Post Comment'}
@@ -540,8 +551,7 @@ function PostDetail({ posts, updatePost, deletePost, upvotePost, addComment }) {
             ))
           ) : (
             <div className="empty-comments">
-              <p>No comments yet</p>
-              <p>Be the first to share your thoughts!</p>
+              <p>No comments yet. Be the first to share your thoughts!</p>
             </div>
           )}
         </div>
