@@ -459,6 +459,10 @@ function PostDetail({ posts, updatePost, deletePost, upvotePost, addComment }) {
     setIsSubmitting(false);
   };
   
+  const handleCancelComment = () => {
+    setComment('');
+  };
+  
   // Sort comments by date (newest first)
   const sortedComments = [...post.comments].sort((a, b) => b.createdAt - a.createdAt);
   
@@ -505,47 +509,74 @@ function PostDetail({ posts, updatePost, deletePost, upvotePost, addComment }) {
         </div>
       )}
 
+      {/* YouTube-style Comments Section */}
       <div className="post-comments">
+        {/* Comments Header */}
         <div className="comments-header">
           <h3>Comments</h3>
           <span className="comment-count">{post.comments.length}</span>
         </div>
         
-        <form onSubmit={handleCommentSubmit} className="comment-form">
-          <textarea
-            value={comment}
-            onChange={(e) => setComment(e.target.value)}
-            placeholder="Share your thoughts..."
-            rows="4"
-            disabled={isSubmitting}
-            className="comment-textarea"
-          />
-          <button 
-            type="submit" 
-            className="btn-post-comment"
-            disabled={!comment.trim() || isSubmitting}
-          >
-            {isSubmitting ? 'Posting...' : 'Post Comment'}
-          </button>
-        </form>
-        
-        <div className="comments-list">
+        {/* Comment Form - Below Header */}
+        <div className="comment-input-section">
+          <form onSubmit={handleCommentSubmit} className="comment-form">
+            <div className="comment-form-header">
+              <div className="comment-form-avatar">👤</div>
+              <h4>Add a comment</h4>
+            </div>
+            <div className="comment-input-container">
+              <div className="comment-avatar">👤</div>
+              <textarea
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+                placeholder="What are your thoughts?"
+                rows="3"
+                disabled={isSubmitting}
+                className="comment-textarea"
+              />
+            </div>
+            <div className="comment-form-actions">
+              {comment.trim() && (
+                <button 
+                  type="button" 
+                  className="btn-cancel-comment"
+                  onClick={handleCancelComment}
+                  disabled={isSubmitting}
+                >
+                  Cancel
+                </button>
+              )}
+              <button 
+                type="submit" 
+                className="btn-post-comment"
+                disabled={!comment.trim() || isSubmitting}
+              >
+                {isSubmitting ? 'Posting...' : 'Comment'}
+              </button>
+            </div>
+          </form>
+        </div>
+
+        {/* Comments List - Below Comment Form */}
+        <div className="comments-section">
           {sortedComments.length > 0 ? (
             sortedComments.map(comment => (
               <div key={comment.id} className="comment">
-                <div className="comment-header">
-                  <span className="comment-author">Anonymous User</span>
-                  <span className="comment-date" title={new Date(comment.createdAt).toLocaleString()}>
-                    {getRelativeTime(comment.createdAt)}
-                  </span>
-                </div>
-                <div className="comment-body">
-                  {comment.text}
-                </div>
-                <div className="comment-actions">
-                  <button className="comment-action like">Like</button>
-                  <button className="comment-action reply">Reply</button>
-                  <button className="comment-action report">Report</button>
+                <div className="comment-avatar">👤</div>
+                <div className="comment-content">
+                  <div className="comment-header">
+                    <span className="comment-author">Anonymous User</span>
+                    <span className="comment-date">{getRelativeTime(comment.createdAt)}</span>
+                  </div>
+                  <div className="comment-body">{comment.text}</div>
+                  <div className="comment-actions">
+                    <button className="comment-action like">
+                      <span>👍</span> Like
+                    </button>
+                    <button className="comment-action reply">
+                      <span>↩️</span> Reply
+                    </button>
+                  </div>
                 </div>
               </div>
             ))
