@@ -1,54 +1,48 @@
-# Web Development Project 1 - HobbyHub
+# HobbyHub
+HobbyHub is a web app designed for people to share and discover various hobbies. The platform provides a space where users can explore different activities, learn new skills, and connect with others who share similar interests through beautifully designed hobby cards.
 
-Submitted by: Suhita Maddukuri
+✨ Features
+- 📝 Curated Hobby Cards: At least 10 unique hobbies displayed in a responsive card layout
+- 🎨 Organized Presentation: Hobbies are displayed in an organized grid format
+- 📋 Detailed Information: Each card includes comprehensive information about the hobby including description, benefits, and requirements
+- 🌟 Community Focus: Designed to bring people together through shared interests
 
-This web app: Contains posts about people sharing their hobbies.
+🧰 Tech Stack
+- Frontend: HTML, CSS
+- Design: Responsive web design principles
+- Layout: CSS Grid and Flexbox
 
-Time spent: 5 hours spent in total
+📸 Screenshots
+<img width="599" height="797" alt="Screenshot 2025-10-21 at 12 43 18 PM" src="https://github.com/user-attachments/assets/9db66e62-cbf4-423a-a86d-a117e6a1cebb" />
 
-## Required Features
+🧭 Getting Started
+Follow the steps below to run this project locally on your machine.
 
-The following **required** functionality is completed:
+1️⃣ Download the Project:
+- Click the green “Code” button on GitHub and select “Download ZIP”, then unzip the file.
 
-- [X] **The app has a cohesive, unique theme for events or resources relevant to a specific community**
-  - [X] Header/title describing the theme is displayed
-- [X] **At least 10 unique events or resources are displayed in a responsive card format**
-  - [X] There are at least 10 cards displayed 
-  - [X] The cards should be displayed in an organized format (ex. a grid, or in one line)
-  - [X] Each card should include some information about the event or resource
+2️⃣ Open the Project Folder in Terminal
+- cd project_folder_name
 
+3️⃣ Install Dependencies
+- Make sure Node.js and npm are installed:
+node -v
+npm -v
+- If you see “command not found”, download Node.js and install it.
+- Then install the required dependencies:
+npm install
 
-The following **optional** features are implemented:
+4️⃣ Start the Development Server
+npm run dev
+- Once the server starts, you’ll see a local development URL like:
+http://localhost:5173/
+- 🖥 Mac users: Cmd + click the link or copy and paste it into your browser.
+- 💻 Windows users: Ctrl + click the link or copy and paste it into your browser.
 
-- [ ] Buttons or links to a related resources are on each card component
-  - [ ] All cards have buttons or links in addition to text
-- [ ] The site is responsive for both desktop and mobile formats
-  - [ ] Web app is shown in a mobile format
-
-The following **additional** features are implemented:
-
-* [ ] List anything else that you added to improve the site's functionality!
-
-## Video Walkthrough
-
-Here's a walkthrough of implemented required features:
-
-https://www.loom.com/share/e5dac1dc58664b938f805a19d27504d1?sid=7487a58b-da54-4077-8875-8a9aa1838288
-
-<!-- Replace this with whatever GIF tool you used! -->
-GIF created with ...  
-<!-- Recommended tools:
-[Kap](https://getkap.co/) for macOS
-[ScreenToGif](https://www.screentogif.com/) for Windows
-[peek](https://github.com/phw/peek) for Linux. -->
-
-## Notes
-
-Describe any challenges encountered while building the app.
 
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright 2025 Suhita Maddukuri
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
