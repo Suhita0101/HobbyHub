@@ -2,7 +2,7 @@
 HobbyHub is a web app designed for people to share and discover various hobbies. The platform provides a space where users can explore different activities, learn new skills, and connect with others who share similar interests through beautifully designed hobby cards.
 
 ✨ Features
-- 📝 Curated Hobby Cards: At least 10 unique hobbies displayed in a responsive card layout
+- 📝 Curated Hobby Cards: Unique hobbies displayed in a responsive card layout
 - 🎨 Organized Presentation: Hobbies are displayed in an organized grid format
 - 📋 Detailed Information: Each card includes comprehensive information about the hobby including description, benefits, and requirements
 - 🌟 Community Focus: Designed to bring people together through shared interests
