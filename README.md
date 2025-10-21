@@ -8,12 +8,14 @@ HobbyHub is a web app designed for people to share and discover various hobbies.
 - 🌟 Community Focus: Designed to bring people together through shared interests
 
 🧰 Tech Stack
-- Frontend: HTML, CSS
-- Design: Responsive web design principles
-- Layout: CSS Grid and Flexbox
+- Frontend: HTML, CSS, JavaScript
+- Build Tool: Vite
+- Runtime: Node.js
+
 
 📸 Screenshots
 <img width="599" height="797" alt="Screenshot 2025-10-21 at 12 43 18 PM" src="https://github.com/user-attachments/assets/9db66e62-cbf4-423a-a86d-a117e6a1cebb" />
+
 
 🧭 Getting Started
 Follow the steps below to run this project locally on your machine.
