@@ -14,6 +14,7 @@ HobbyHub is a web app designed for people to share and discover various hobbies.
 
 
 📸 Screenshots
+
 <img width="599" height="797" alt="Screenshot 2025-10-21 at 12 43 18 PM" src="https://github.com/user-attachments/assets/9db66e62-cbf4-423a-a86d-a117e6a1cebb" />
 
 
