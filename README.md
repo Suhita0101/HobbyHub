@@ -8,7 +8,7 @@ HobbyHub is a full-stack community app for sharing hobbies, progress updates, pi
 - Account registration and login with unique usernames, hashed passwords, and JWT sessions
 - Authenticated create/edit/delete for posts, with owner-only controls
 - Image uploads through Multer, plus optional image URL support
-- Reddit-style discussion flow with voting and comments
+- Upvote/downvote voting system with threaded comments
 - User profiles with friends count, post history, and total cheers
 - Friend connections and private messaging between connected users
 - JSON-backed local data store for simple development and easy migration to a hosted database later
